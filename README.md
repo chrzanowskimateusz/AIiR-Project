@@ -1,4 +1,4 @@
-# Internetowe_i_rozproszone
+# Internetowe i rozproszone
 
 Zespół:  
 Wojciech Ziębicki (241141) - database architect  
