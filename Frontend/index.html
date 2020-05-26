@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	<title>AIiR Projekt - Komiwojażer</title>
+	
+	<meta name="description" content="Narzędzie rozwiązujące problem komiwojażera różnymi algorytmami" />
+	<meta name="keywords" content="pwr, projekt" />
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="css\style.css" type="text/css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+	<div id="container">
+		<div class="header">Komiwojażer</div>
+		<div class="main-page">
+			<div class="form">
+				<form class="login-form" action="login.php" method="post" onsubmit="do_login();">
+					<input type="text" name="loginid" id="loginid" placeholder="login"/>
+					<i class="far fa-envelope"></i>
+					<input type="password" name="password" id="password"  placeholder="hasło"/>
+					<i class="fas fa-lock" onclick="show()"></i>
+					<div class="bc1"><button type="submit">Zaloguj się</button></div>
+				</form>
+				<div class="bc1"></a><button type="submit">Kontynuuj bez logowania</button></div>
+				<p class="message">Nie masz jeszcze konta? <a href="register.html">Zarejestruj się</a> </p>
+			</div>
+		</div>
+
+	</div>
+	
+
+<script>
+	function do_login()
+{
+	var login=$("#loginid").val();
+	var pass=$("#password").val();
+	if(login!="" && pass!="")
+	{
+		$("#loading_spinner").css({"display":"block"});
+		$.ajax
+		 ({
+		  type:'post',
+		  url:'',
+		  data:{
+		   do_login:"do_login",
+		   login:login,
+		   password:pass
+		  },
+		  success:function(response) {
+			  if(response=="success")
+			  {
+				window.location.href="";
+			  }
+			  else
+			  {
+				  $("#loading_spinner").css({"display":"none"});
+				  alert("Wrong Details");
+			  }
+		  }
+		});
+	}
+	else
+	{
+		alert("Please Fill All The Details");
+	}
+	return false;
+}
+</script>
+	
+	<script>
+		function show(){
+			var pswrd = document.getElementById('password');
+			var icon = document.querySelector('.fas');
+			if (pswrd.type === "password") {
+				pswrd.type = "text";
+				icon.style.color = "#4CAF50";
+			}else{
+				pswrd.type = "password";
+				icon.style.color = "grey";
+			}
+		}
+	</script>
+
+</body>
+</html>
