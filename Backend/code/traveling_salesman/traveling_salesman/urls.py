@@ -19,5 +19,7 @@ from users import api_views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', user_views.RegisterUser.as_view())
+    path('register/', user_views.RegisterUser.as_view()),
+    path('login/', user_views.Login.as_view()),
+    path('logout/', user_views.Logout.as_view()),
 ]
