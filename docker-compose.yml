@@ -1,0 +1,21 @@
+version: "3.1"
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: salesmandb
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "3306:3306"
+  web:
+    build: ./Backend
+    command: python traveling_salesman/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./Backend/code:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
