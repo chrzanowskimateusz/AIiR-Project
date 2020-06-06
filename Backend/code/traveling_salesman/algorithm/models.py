@@ -5,8 +5,12 @@ user = get_user_model()
 
 
 class File(models.Model):
-    file_path = models.CharField(max_length=250)
-    file_result_path = models.CharField(max_length=250)
+    file = models.FileField(default=None, null=True)
+
+
+class Result(models.Model):
+    file_result_path = models.CharField(max_length=240)
     file_result_result = models.IntegerField()
     file_calculate_time = models.IntegerField()
     user = models.ForeignKey(user, on_delete=models.CASCADE)
+    file_path = models.ForeignKey(File, on_delete=models.CASCADE)

@@ -16,10 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from users import api_views as user_views
+from algorithm import api_views as algorithm_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', user_views.RegisterUser.as_view()),
     path('login/', user_views.Login.as_view()),
     path('logout/', user_views.Logout.as_view()),
+    path('results/', algorithm_views.Results.as_view()),
+    path('upload/', algorithm_views.FileUpload.as_view()),
+    path('userResults/', algorithm_views.UserResults.as_view()),
 ]
