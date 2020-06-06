@@ -77,16 +77,28 @@ WSGI_APPLICATION = 'traveling_salesman.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'salesmandb',
+#        'USER': 'root',
+#        'PASSWORD': '12345',
+#        'HOST': 'db',
+#        'PORT': '3306',
+#    }
+#}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'salesmandb',
-        'USER': 'root',
-        'PASSWORD': '12345',
-        'HOST': 'db',
+        'NAME': 'aiir',
+        'USER': 'LoginLogin1@neshi',
+        'PASSWORD': 'HasloHaslo1',
+        'HOST': 'neshi.mysql.database.azure.com',
         'PORT': '3306',
     }
 }
+
 
 
 # Password validation
