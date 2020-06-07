@@ -56,9 +56,13 @@ ul
 
 .main-page
 {
-    width: 380px;
     padding: 10% 0 0 ;
-    margin: auto;
+    position: relative;
+    z-index: 1;
+    background: rgba(116, 116, 116, 0.8);
+    width: auto;
+    margin: 0 auto 100px;
+    text-align: center;
 }
 .main-page-calc
 {

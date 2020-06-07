@@ -1,0 +1,23 @@
+{% extends "traveling_salesman/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+	<div id="container">
+		<div class="header">Komiwojażer</div>
+		<div class="main-page">
+			<div class="content-section">
+				<form method="POST">
+					{% csrf_token %}
+					<fieldset class="form-group">
+						<legend class="border-bottom mb-4">Rejestracja</legend>
+						{{ form|crispy }}
+					</fieldset>
+					<div class="form-group">
+						<button class="btn btn-outline-info" type="submit">Zarejestruj się</button>
+					</div>
+				</form>
+			
+		</div>
+
+	</div>
+
+{% endblock content %}
