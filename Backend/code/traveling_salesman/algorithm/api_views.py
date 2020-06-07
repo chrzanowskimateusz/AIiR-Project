@@ -5,7 +5,7 @@ from rest_framework.generics import GenericAPIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from .models import File, Result
-from .serializers import FileSerializer, ResultSerializer
+from .serializers import FileSerializer, ResultSerializer, CalculatePathSerializer
 
 
 class Results(GenericAPIView):
@@ -43,3 +43,18 @@ class FileUpload(GenericAPIView):
     def get(self, request, *args, **kwargs):
         serialized = self.serializer_class(self.get_queryset(), many=True)
         return Response(serialized.data)
+
+
+class CalculatePath(GenericAPIView):
+    serializer_class = CalculatePathSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            # result = calculate_path(serializer.data) not implemented
+            serialized_result = ResultSerializer(data=result)
+            if serialized_result.is_valid():
+                serialized_result.save()
+                return Response(serialized_result.data, status=status.HTTP_200_OK)
+            return Response(serialized_result.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
