@@ -20,10 +20,10 @@ from algorithm import api_views as algorithm_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register/', user_views.RegisterUser.as_view()),
-    path('login/', user_views.Login.as_view()),
-    path('logout/', user_views.Logout.as_view()),
-    path('results/', algorithm_views.Results.as_view()),
-    path('upload/', algorithm_views.FileUpload.as_view()),
-    path('userResults/', algorithm_views.UserResults.as_view()),
+    path('register/', user_views.RegisterUser.as_view(), name='register'),
+    path('login/', user_views.Login.as_view(), name='login'),
+    path('logout/', user_views.Logout.as_view(), name='logout'),
+    path('results/', algorithm_views.Results.as_view(), , name='page-history'),
+    path('upload/', algorithm_views.FileUpload.as_view(), name='page-tsp'),
+    path('userResults/', algorithm_views.UserResults.as_view(), name='page-profile'),
 ]

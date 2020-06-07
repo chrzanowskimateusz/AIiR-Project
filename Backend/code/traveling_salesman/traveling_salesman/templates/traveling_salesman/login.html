@@ -1,0 +1,73 @@
+{% extends "traveling_salesman/base.html" %}
+{% block content %}
+	<div id="container">
+		<div class="header">Komiwojażer</div>
+		<div class="main-page">
+			<div class="form">
+				<form class="login-form" method="post" onsubmit="do_login()">
+					<input type="text" name="loginid" id="loginid" placeholder="login"/>
+					<i class="far fa-envelope"></i>
+					<input type="password" name="password" id="password"  placeholder="hasło"/>
+					<i class="fas fa-lock" onclick="show()"></i>
+					<div class="bc1"><button type="submit">Zaloguj się</button></div>
+				</form>
+				<div class="bc1"></a><button type="submit">Kontynuuj bez logowania</button></div>
+				<p class="message">Nie masz jeszcze konta? <a href="{% url 'register' %} ">Zarejestruj się</a> </p>
+			</div>
+		</div>
+
+	</div>
+	
+
+<script>
+	function do_login()
+{
+	var login=$("#loginid").val();
+	var pass=$("#password").val();
+	if(login!="" && pass!="")
+	{
+		$("#loading_spinner").css({"display":"block"});
+		$.ajax
+		 ({
+		  type:'post',
+		  url:'',
+		  data:{
+		   do_login:"do_login",
+		   login:login,
+		   password:pass
+		  },
+		  success:function(response) {
+			  if(response=="success")
+			  {
+				window.location.href="";
+			  }
+			  else
+			  {
+				  $("#loading_spinner").css({"display":"none"});
+				  alert("Wrong Details");
+			  }
+		  }
+		});
+	}
+	else
+	{
+		alert("Please Fill All The Details");
+	}
+	return false;
+}
+</script>
+	
+	<script>
+		function show(){
+			var pswrd = document.getElementById('password');
+			var icon = document.querySelector('.fas');
+			if (pswrd.type === "password") {
+				pswrd.type = "text";
+				icon.style.color = "#4CAF50";
+			}else{
+				pswrd.type = "password";
+				icon.style.color = "grey";
+			}
+		}
+	</script>
+{% endblock content %}
