@@ -5,7 +5,28 @@ body
     background: url("img/bg.jpg") no-repeat center fixed;
     background-size: cover;
     color: #ffffff;
+    margin-top: 0;
 
+}
+
+ul 
+{
+    margin: 0;
+}
+
+.navbar-nav .nav-link 
+{
+    color: #cbd5db;
+}
+  
+.navbar-nav .nav-link:hover 
+{
+    color: #ffffff;
+} 
+
+.navbar-nav .nav-link.active 
+{
+    font-weight: 500;
 }
 
 #container
