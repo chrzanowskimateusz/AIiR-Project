@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from rest_framework import status
 from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework.generics import GenericAPIView
@@ -6,7 +8,7 @@ from rest_framework.response import Response
 from .serializers import UserRegisterSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
-
+from .forms import UserRegisterForm
 
 User = get_user_model()
 
@@ -43,3 +45,16 @@ class Logout(GenericAPIView):
     def get(self, request, format=None):
         request.user.auth_token.delete()
         return Response(status=status.HTTP_200_OK)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'users/register.html', {'form': form})
