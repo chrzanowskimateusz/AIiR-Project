@@ -25,7 +25,7 @@ from users.views import (
     registration_view,
     login_view,
     logout_view,
-
+    upload_view,
 )
 
 urlpatterns = [
@@ -34,6 +34,7 @@ urlpatterns = [
     url('register/', registration_view, name='register'),
     url('logout/', logout_view, name='logout'),
     url('login/', login_view, name='login'),
+    url('home/', upload_view, name='home'),
     path('results/', algorithm_views.Results.as_view(), name='page-history'),
     path('upload/', algorithm_views.FileUpload.as_view(), name='page-tsp'),
     path('userResults/', algorithm_views.UserResults.as_view(), name='page-profile'),

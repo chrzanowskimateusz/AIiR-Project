@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div id="container">
+	<div class="header">Komiwojażer</div>
+	<div class="main-page">
+		<legend class="border-bottom mb-4">Upload File</legend>
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset class="form-group">
+
+				{{ form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-info" type="submit" >Upload</button>
+			</div>
+		</form>
+
+		</div>
+	</div>
+
+</div>
+
+{% endblock content %}

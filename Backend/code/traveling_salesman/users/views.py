@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import RegistrationForm, AccountAuthenticationForm
+from .forms import RegistrationForm, AccountAuthenticationForm, UploadFileForm
 
 
 def registration_view(request):
@@ -23,6 +23,23 @@ def registration_view(request):
     return render(request, 'users/register.html', {'form': form})
 
 
+def upload_view(request):
+    context = {}
+    if request.POST:
+        form = UploadFileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        else:
+            context['file_upload_form'] = form
+
+    else:
+        form = UploadFileForm()
+        context['file_upload_form'] = form
+    return render(request, 'users/upload.html', {'form': form})
+
+
+
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -34,7 +51,7 @@ def login_view(request):
 
     user = request.user
     if user.is_authenticated:
-        return redirect("home")
+        return redirect("page-tsp")
 
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
@@ -45,7 +62,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect("home")
+                return redirect("page-tsp")
 
     else:
         form = AccountAuthenticationForm()
