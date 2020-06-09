@@ -1,13 +1,14 @@
-{% extends "traveling_salesman/base.html" %}
+{% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div id="container">
 	<div class="header">Komiwojażer</div>
 	<div class="main-page">
+		<legend class="border-bottom mb-4">Log In</legend>
 		<form method="POST">
 			{% csrf_token %}
 			<fieldset class="form-group">
-				<legend class="border-bottom mb-4">Log In</legend>
+
 				{{ form|crispy }}
 			</fieldset>
 			<div class="form-group">

@@ -39,10 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'users',
-    'crispy_forms',
     'algorithm',
     'rest_framework.authtoken',
-    
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +59,7 @@ ROOT_URLCONF = 'traveling_salesman.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -152,5 +151,8 @@ USE_TZ = True
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
