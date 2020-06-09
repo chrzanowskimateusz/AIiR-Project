@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
-from .forms import RegistrationForm, AccountAuthenticationForm, UploadFileForm
+from django.test import RequestFactory
+from rest_framework.test import APIClient
 
+from .forms import RegistrationForm, AccountAuthenticationForm, UploadFileForm
+from algorithm import models as algorithm_models
 
 def registration_view(request):
     context = {}
@@ -29,6 +32,10 @@ def upload_view(request):
         form = UploadFileForm(request.POST)
         if form.is_valid():
             form.save()
+            factory = RequestFactory()
+            content_type = "multipart/form-data"
+
+            factory.post('localhost:8000/upload/')
             return redirect('home')
         else:
             context['file_upload_form'] = form
@@ -56,9 +63,9 @@ def login_view(request):
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
         if form.is_valid():
-            email = request.POST['email']
+            username = request.POST['username']
             password = request.POST['password']
-            user = authenticate(email=email, password=password)
+            user = authenticate(username=username, password=password)
 
             if user:
                 login(request, user)

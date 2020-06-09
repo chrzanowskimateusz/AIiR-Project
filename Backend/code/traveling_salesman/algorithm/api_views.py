@@ -33,7 +33,7 @@ class FileUpload(GenericAPIView):
     queryset = File.objects.all()
     parser_classes = (MultiPartParser, FormParser,)
 
-    def put(self, request, format=None):
+    def post(self, request, format=None):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
