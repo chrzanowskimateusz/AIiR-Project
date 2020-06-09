@@ -49,7 +49,7 @@ def upload_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('/')
+    return redirect('login')
 
 
 def login_view(request):
@@ -58,7 +58,7 @@ def login_view(request):
 
     user = request.user
     if user.is_authenticated:
-        return redirect("page-tsp")
+        return redirect("home")
 
     if request.POST:
         form = AccountAuthenticationForm(request.POST)
@@ -69,7 +69,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect("page-tsp")
+                return redirect("home")
 
     else:
         form = AccountAuthenticationForm()
