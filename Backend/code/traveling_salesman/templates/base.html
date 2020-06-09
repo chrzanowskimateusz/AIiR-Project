@@ -54,19 +54,24 @@
                   
                 </div>
               </nav>
-
-            {% if messages %}
+  <div id="container" >
+      <div class="header">Komiwojażer</div>
+      <div class="main-page">
+          <div class="col-md-8">
+              {% if messages %}
               {% for message in messages %}
-                  <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                  </div>
+              <div class="alert alert-{{ message.tags }}">
+                  {{ message }}
+              </div>
               {% endfor %}
-            {% endif %}
-
+              {% endif %}
+          </div>
     {% block content %}
       
     {% endblock  %}
-
+      </div>
+  </div>
 
   </body>
 </html>
+

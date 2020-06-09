@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.test import RequestFactory
+from django.contrib import messages
 from rest_framework.test import APIClient
 
 from .forms import RegistrationForm, AccountAuthenticationForm, UploadFileForm
@@ -14,9 +15,9 @@ def registration_view(request):
             form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password')
-            account = authenticate(email=email, password=raw_password)
-            login(request, account)
-            return redirect('home')
+            #login(request, user)
+            messages.success(request, f'Account created for {email}!')
+            return redirect('login')
         else:
             context['registration_form'] = form
 

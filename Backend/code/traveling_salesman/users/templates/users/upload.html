@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div id="container">
-	<div class="header">Komiwojażer</div>
-	<div class="main-page">
+
+
 		<legend class="border-bottom mb-4">Upload File</legend>
 		<form method="POST">
 			{% csrf_token %}
@@ -16,9 +15,6 @@
 			</div>
 		</form>
 
-		</div>
-	</div>
 
-</div>
 
 {% endblock content %}

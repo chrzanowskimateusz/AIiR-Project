@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-	<div id="container">
-		<div class="header">Komiwojażer</div>
-		<div class="main-page">
+
+
 			<div class="content-section">
 				<legend class="border-bottom mb-4">Rejestracja</legend>
 				<form method="POST">
@@ -14,8 +13,8 @@
 					</div>
 				</form>
 				<p class="message">Już zarejestrowany? <a href="{% url 'login' %} ">Zaloguj się</a> </p>
-		</div>
-		</div>
-	</div>
+			</div>
+
+
 
 {% endblock content %}

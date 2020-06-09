@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div id="container">
-	<div class="header">Komiwojażer</div>
-	<div class="main-page">
-		<legend class="border-bottom mb-4">Log In</legend>
+
+
+		<legend class="border-bottom mb-4">Logowanie</legend>
 		<form method="POST">
 			{% csrf_token %}
 			<fieldset class="form-group">
@@ -17,9 +16,7 @@
 		</form>
 
 			<p class="message">Nie masz jeszcze konta? <a href="{% url 'register' %} ">Zarejestruj się</a> </p>
-		</div>
-	</div>
 
-</div>
+
 
 {% endblock content %}

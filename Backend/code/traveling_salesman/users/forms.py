@@ -10,6 +10,7 @@ User = get_user_model()
 class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Add a valid email address.')
 
+
     class Meta:
         model = User
         fields = ('email', 'username')
@@ -18,6 +19,7 @@ class RegistrationForm(UserCreationForm):
 class AccountAuthenticationForm(forms.ModelForm):
 
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
+    username = forms.CharField(help_text='')
 
     class Meta:
         model = User
