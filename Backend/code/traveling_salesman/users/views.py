@@ -7,6 +7,7 @@ from rest_framework.test import APIClient
 from .forms import RegistrationForm, AccountAuthenticationForm, UploadFileForm
 from algorithm import models as algorithm_models
 
+
 def registration_view(request):
     context = {}
     if request.POST:
