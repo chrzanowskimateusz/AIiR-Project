@@ -23,13 +23,12 @@ class BruteForceMultiTSP:
     # wczytywanie danych z pliku
     def read_distances(self, f):
         dists = []
-        file = f.read()
-        print(file)
-        for line in file:
+        print(f)
+        for line in f:
             if line[0] == '#':
                 continue
             print(line)
-            dists.append(list(map(int, map(line.split(',')))))
+            dists.append(list(map(int, map(str.strip, line.decode('utf8').split(',')))))
         print(dists)
         return dists
 
