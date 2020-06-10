@@ -6,8 +6,11 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.response import Response
 from .models import File, Result
 from .serializers import FileSerializer, ResultSerializer, CalculatePathSerializer
+User = get_user_model()
 
 
+@authentication_classes([])
+@permission_classes([])
 class Results(GenericAPIView):
     queryset = Result.objects.all()
     serializer_class = ResultSerializer
@@ -16,18 +19,20 @@ class Results(GenericAPIView):
         serialized = self.serializer_class(self.get_queryset(), many=True)
         return Response(serialized.data)
 
-
+@authentication_classes([])
+@permission_classes([])
 class UserResults(GenericAPIView):
     queryset = Result.objects
     serializer_class = ResultSerializer
 
     def get(self, request, *args, **kwargs):
-        user = request.user
+        user = User.objects.get(pk=args['pk'])
         data = self.queryset.filter(user=user)
         serialized = self.serializer_class(data, many=True)
         return Response(serialized.data)
 
-
+@authentication_classes([])
+@permission_classes([])
 class FileUpload(GenericAPIView):
     serializer_class = FileSerializer
     queryset = File.objects.all()
@@ -44,14 +49,15 @@ class FileUpload(GenericAPIView):
         serialized = self.serializer_class(self.get_queryset(), many=True)
         return Response(serialized.data)
 
-
+@authentication_classes([])
+@permission_classes([])
 class CalculatePath(GenericAPIView):
     serializer_class = CalculatePathSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            # result = calculate_path(serializer.data) not implemented
+            # result = calculate_path(serializer.data)
             serialized_result = ResultSerializer(data=result)
             if serialized_result.is_valid():
                 serialized_result.save()
