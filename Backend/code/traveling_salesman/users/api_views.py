@@ -25,7 +25,8 @@ class RegisterUser(GenericAPIView):
         else:
             return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@authentication_classes([])
+@permission_classes([])
 class Login(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
@@ -38,7 +39,8 @@ class Login(ObtainAuthToken):
             'user_id': user.pk,
         })
 
-
+@authentication_classes([])
+@permission_classes([])
 class Logout(GenericAPIView):
     def get(self, request, format=None):
         request.user.auth_token.delete()

@@ -7,7 +7,8 @@ from rest_framework.response import Response
 from .models import File, Result
 from .serializers import FileSerializer, ResultSerializer, CalculatePathSerializer
 
-
+@authentication_classes([])
+@permission_classes([])
 class Results(GenericAPIView):
     queryset = Result.objects.all()
     serializer_class = ResultSerializer
@@ -16,7 +17,8 @@ class Results(GenericAPIView):
         serialized = self.serializer_class(self.get_queryset(), many=True)
         return Response(serialized.data)
 
-
+@authentication_classes([])
+@permission_classes([])
 class UserResults(GenericAPIView):
     queryset = Result.objects
     serializer_class = ResultSerializer
@@ -27,7 +29,8 @@ class UserResults(GenericAPIView):
         serialized = self.serializer_class(data, many=True)
         return Response(serialized.data)
 
-
+@authentication_classes([])
+@permission_classes([])
 class FileUpload(GenericAPIView):
     serializer_class = FileSerializer
     queryset = File.objects.all()
@@ -44,7 +47,8 @@ class FileUpload(GenericAPIView):
         serialized = self.serializer_class(self.get_queryset(), many=True)
         return Response(serialized.data)
 
-
+@authentication_classes([])
+@permission_classes([])
 class CalculatePath(GenericAPIView):
     serializer_class = CalculatePathSerializer
 
