@@ -23,7 +23,6 @@ class UserResults(GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         user = request.user
-        data = self.queryset.filter(user=user)
         serialized = self.serializer_class(data, many=True)
         return Response(serialized.data)
 

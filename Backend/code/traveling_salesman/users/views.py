@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.test import RequestFactory
 from django.contrib import messages
+from django.template import Context
 from rest_framework.test import APIClient
 
 from .forms import RegistrationForm, AccountAuthenticationForm, UploadFileForm
@@ -163,8 +164,8 @@ def upload_view(request):
             print(result, end - start)
             factory.post('localhost:8000/upload/')
 
-            context = {'data':str(result+"\t"+str(end-start))}
-            return render(request, 'home', context)
+            context = {"data": "koszt, droga: " + str(result)  + " czas: " + str(end-start)}
+            return render(request, 'users/upload.html', context)
         else:
             context['file_upload_form'] = form
 
