@@ -34,7 +34,7 @@ class AccountAuthenticationForm(forms.ModelForm):
 
 
 class UploadFileForm(forms.ModelForm):
-    file = forms.FileField();
+    file = forms.FileField()
 
     class Meta:
         model = algorithm_models.File
